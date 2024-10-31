@@ -12,8 +12,17 @@ app.use("/user", routerUser)
 
 
 const PORT = process.env.PORT
+const Db_uri = process.env.DATABASE_URI
 
-app.listen(PORT, ()=>{
-    console.log(`Server running...`);
+app.listen(PORT, async()=>{
+    try {
+        mongoose.connect(Db_uri)
+        console.log(`Server running...`);
+        console.log(`DBS connection...`);
+    } catch (error) {
+        console.log(error);
+    }
 })
+
+
 
